@@ -15,6 +15,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+// Plugins
+import { Camera } from '@ionic-native/camera';
+
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -51,6 +54,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

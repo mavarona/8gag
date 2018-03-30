@@ -28,8 +28,8 @@
         <ion-input type="text" [(ngModel)]="title"></ion-input>
     </ion-item>
 
-    <ion-item>
-        <img src="https://www.publicdomainpictures.net/pictures/30000/velka/evening-landscape-13530956185Aw.jpg">
+    <ion-item *ngIf="imagePreview">
+        <img [src]="imagePreview">
     </ion-item>
 
   </ion-list>
@@ -50,7 +50,8 @@
       <ion-col>
           <button ion-button
           block
-          icon-left>
+          icon-left
+          (click)="showCamera()">
           <ion-icon name="camera"></ion-icon>
           Camera
   </button>
