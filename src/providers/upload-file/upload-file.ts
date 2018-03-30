@@ -12,7 +12,10 @@ import { UploadFile } from '../../models/uploadFile.model';
 @Injectable()
 export class UploadFileProvider {
 
-  constructor( private _toastCtrl: ToastController ) {
+  images: Array<UploadFile> = new Array<UploadFile>();
+
+  constructor( private _toastCtrl: ToastController,
+               private _afDB: AngularFireDatabase ) {
 
 
 
@@ -41,10 +44,26 @@ export class UploadFileProvider {
         () => {
           console.log('Upload file in firebase');
           this.showMessage('The image was loaded');
+          const url = uploadTask.snapshot.downloadURL;
+          this.createPost( uploadFile.title, url, fileName );
           resolve();
         }
        )
     });
+
+  }
+
+  private createPost ( title: string, img: string, fileName: string ) {
+
+    const post: UploadFile = {
+      img: img,
+      title: title,
+      key: fileName
+    };
+
+    this._afDB.object(`/post/${ fileName }`).update(post);
+
+    this.images.push( post );
 
   }
 

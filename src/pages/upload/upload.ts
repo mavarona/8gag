@@ -16,7 +16,7 @@ import { UploadFile } from '../../models/uploadFile.model';
 })
 export class UploadPage {
 
-  title: string;
+  title: string = '';
   imagePreview: string = '';
   image64: string = '';
 
@@ -78,7 +78,8 @@ export class UploadPage {
         title: this.title
       }
 
-      this._ufp.loadImageFirebase ( imageUpload );
+      this._ufp.loadImageFirebase ( imageUpload )
+               .then( () => this.closeModal() );
 
   }
 

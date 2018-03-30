@@ -17,7 +17,8 @@
     <ion-buttons end>
 
         <button ion-button
-                (click)="createPost()">
+                (click)="createPost()"
+                [disabled]="title.length <= 1 || imagePreview.length <= 1">
           Create Post
         </button>
 
