@@ -5,6 +5,10 @@ import { IonicPage, ViewController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
+// Providers
+import { UploadFileProvider } from '../../providers/upload-file/upload-file';
+import { UploadFile } from '../../models/uploadFile.model';
+
 @IonicPage()
 @Component({
   selector: 'page-upload',
@@ -14,10 +18,12 @@ export class UploadPage {
 
   title: string;
   imagePreview: string = '';
+  image64: string = '';
 
   constructor( private _viewCtrl: ViewController,
                private _camera: Camera,
-               private _imagePicker: ImagePicker ) {
+               private _imagePicker: ImagePicker,
+               private _ufp: UploadFileProvider ) {
   }
 
   closeModal () {
@@ -39,6 +45,7 @@ export class UploadPage {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64:
      this.imagePreview = 'data:image/jpeg;base64,' + imageData;
+     this.image64 = imageData;
     }, (err) => {
       console.log('Error in camera', JSON.stringify(err));
     });
@@ -56,10 +63,22 @@ export class UploadPage {
     this._imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
           this.imagePreview = 'data:image/jpeg;base64,' + results[i];
+          this.image64 = results[i];
       }
     }, (err) => {
       console.log('Error in select Picker image', JSON.stringify(err));
     });
+
+  }
+
+  createPost () {
+
+      const imageUpload: UploadFile = {
+        img: this.image64,
+        title: this.title
+      }
+
+      this._ufp.loadImageFirebase ( imageUpload );
 
   }
 
