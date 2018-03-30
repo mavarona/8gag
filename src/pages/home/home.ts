@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { UploadPage } from '../upload/upload';
+
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -8,8 +11,12 @@ import { UploadPage } from '../upload/upload';
 })
 export class HomePage {
 
-  constructor( public modalCtrl: ModalController ) {
+  posts: Observable<Array<any>>
 
+  constructor( public modalCtrl: ModalController,
+               private _afDB: AngularFireDatabase ) {
+
+      this.posts = _afDB.list('post').valueChanges();
   }
 
   showModal () {
