@@ -24,14 +24,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { PipesModule } from '../pipes/pipes.module';
 import { UploadFileProvider } from '../providers/upload-file/upload-file';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyCuZqJiAs2_tw14xO5aJIlGDn9B_MI2ES4",
-  authDomain: "gag-f8089.firebaseapp.com",
-  databaseURL: "https://gag-f8089.firebaseio.com",
-  projectId: "gag-f8089",
-  storageBucket: "gag-f8089.appspot.com",
-  messagingSenderId: "610619218313"
-};
+// config
+
+import { firebaseConfig } from '../../config/config'
 
 @NgModule({
   declarations: [
