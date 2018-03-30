@@ -15,6 +15,7 @@ import { UploadFileProvider } from '../../providers/upload-file/upload-file';
 export class HomePage {
 
   // posts: Observable<Array<any>>
+  anyMore: boolean = true;
 
   constructor( public modalCtrl: ModalController,
                public _ufp: UploadFileProvider ) {
@@ -33,7 +34,10 @@ export class HomePage {
   doInfinite(infiniteScroll) {
 
     this._ufp.loadImages()
-             .then(() => infiniteScroll.complete());
+             .then( (anyMore: boolean) => {
+                this.anyMore = anyMore;
+                infiniteScroll.complete()
+             });
 
   }
 
