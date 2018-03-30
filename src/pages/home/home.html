@@ -8,10 +8,42 @@
 
 <ion-content>
 
+  <ion-card>
+
+    <img src="https://www.publicdomainpictures.net/pictures/30000/velka/evening-landscape-13530956185Aw.jpg">
+
+    <ion-card-content>
+
+      <ion-card-title>
+        Post 1
+      </ion-card-title>
+
+    </ion-card-content>
+
+    <ion-row>
+
+      <ion-col text-right>
+
+          <button ion-button
+                  clear
+                  small
+                  color="primary"
+                  icon-left>
+            <ion-icon name="share-alt"></ion-icon>
+            Share
+          </button>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-card>
+
   <ion-fab bottom right>
 
     <button ion-fab
-            color="danger">
+            color="danger"
+            (click)="showModal()">
         <ion-icon name="add"></ion-icon></button>
 
   </ion-fab>
