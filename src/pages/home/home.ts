@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { UploadPage } from '../upload/upload';
 
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+// Providers
+import { UploadFileProvider } from '../../providers/upload-file/upload-file';
+
+// import { AngularFireDatabase } from 'angularfire2/database';
+// import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -11,12 +14,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
 
-  posts: Observable<Array<any>>
+  // posts: Observable<Array<any>>
 
   constructor( public modalCtrl: ModalController,
-               private _afDB: AngularFireDatabase ) {
+               public _ufp: UploadFileProvider ) {
 
-      this.posts = _afDB.list('post').valueChanges();
+      // this.posts = _afDB.list('post').valueChanges();
   }
 
   showModal () {

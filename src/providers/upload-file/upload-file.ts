@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 // Firebase
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import 'rxjs/add/operator/map';
 
 // Models
 import { UploadFile } from '../../models/uploadFile.model';
@@ -13,11 +14,25 @@ import { UploadFile } from '../../models/uploadFile.model';
 export class UploadFileProvider {
 
   images: Array<UploadFile> = new Array<UploadFile>();
+  lastKey: string = null;
 
   constructor( private _toastCtrl: ToastController,
                private _afDB: AngularFireDatabase ) {
 
+                this.loadLastKey()
+                    .subscribe();
 
+  }
+
+  loadLastKey ( ) {
+
+    return this._afDB.list('/post', ref => ref.orderByKey().limitToFirst(1))
+              .valueChanges()
+              .map( (posts: any) => {
+                this.lastKey = posts[0].key;
+                this.images.push( posts[0] );
+
+              });
 
   }
 
