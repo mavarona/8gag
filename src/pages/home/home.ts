@@ -30,4 +30,11 @@ export class HomePage {
 
   }
 
+  doInfinite(infiniteScroll) {
+
+    this._ufp.loadImages()
+             .then(() => infiniteScroll.complete());
+
+  }
+
 }
