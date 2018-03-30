@@ -8,6 +8,8 @@ import { IonicPage, ViewController } from 'ionic-angular';
 })
 export class UploadPage {
 
+  title: string;
+
   constructor( private _viewCtrl: ViewController ) {
   }
 

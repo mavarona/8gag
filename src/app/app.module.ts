@@ -15,6 +15,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCuZqJiAs2_tw14xO5aJIlGDn9B_MI2ES4",
   authDomain: "gag-f8089.firebaseapp.com",
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
