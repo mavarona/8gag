@@ -4,6 +4,9 @@ import { UploadPage } from '../upload/upload';
 
 // Providers
 import { UploadFileProvider } from '../../providers/upload-file/upload-file';
+import { UploadFile } from '../../models/uploadFile.model';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // import { AngularFireDatabase } from 'angularfire2/database';
 // import { Observable } from 'rxjs/Observable';
@@ -18,7 +21,8 @@ export class HomePage {
   anyMore: boolean = true;
 
   constructor( public modalCtrl: ModalController,
-               public _ufp: UploadFileProvider ) {
+               public _ufp: UploadFileProvider,
+               private _socialSharing: SocialSharing ) {
 
       // this.posts = _afDB.list('post').valueChanges();
   }
@@ -28,6 +32,14 @@ export class HomePage {
     const modal = this.modalCtrl.create( UploadPage );
 
     modal.present();
+
+  }
+
+  shared(post: UploadFile) {
+
+    this._socialSharing.shareViaFacebook( post.title, post.img, post.img )
+                       .then( () => {} )
+                       .catch( () => {});
 
   }
 

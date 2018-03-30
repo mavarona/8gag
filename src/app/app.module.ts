@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Plugins
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
@@ -58,6 +59,7 @@ export const firebaseConfig = {
     AngularFireDatabase,
     Camera,
     ImagePicker,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UploadFileProvider
   ]
